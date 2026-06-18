@@ -3,7 +3,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Rental;
-use App\Models\DetailRental;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -35,9 +34,19 @@ class RentalController extends Controller
         return back()->with('success', 'Rental disetujui.');
     }
 
-    public function tolak(Rental $rental)
-    {
-        $rental->update(['status' => 'ditolak']);
-        return back()->with('success', 'Rental ditolak.');
-    }
+    public function tolak(Request $request, $id)
+{
+    $request->validate([
+        'alasan_ditolak' => 'required|string|max:1000',
+    ]);
+
+    $rental = Rental::findOrFail($id);
+
+    $rental->update([
+        'status' => 'ditolak',
+        'alasan_ditolak' => $request->alasan_ditolak,
+    ]);
+
+    return back()->with('success', 'Rental berhasil ditolak');
+}
 }

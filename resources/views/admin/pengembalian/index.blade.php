@@ -22,10 +22,8 @@
     .page-header::after {
         content: '';
         position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 60px;
-        height: 4px;
+        bottom: 0; left: 0;
+        width: 60px; height: 4px;
         background: linear-gradient(90deg, var(--forest-medium), var(--forest-light));
         border-radius: 2px;
     }
@@ -34,13 +32,13 @@
         border: none;
         border-radius: 20px;
         background: white;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         overflow: hidden;
         transition: all 0.3s ease;
     }
 
     .return-card:hover {
-        box-shadow: 0 8px 30px rgba(27, 67, 50, 0.12);
+        box-shadow: 0 8px 30px rgba(27,67,50,0.12);
         transform: translateY(-2px);
     }
 
@@ -60,7 +58,7 @@
     }
 
     .rental-badge {
-        background: rgba(255, 255, 255, 0.15);
+        background: rgba(255,255,255,0.15);
         backdrop-filter: blur(4px);
         padding: 4px 12px;
         border-radius: 20px;
@@ -72,13 +70,11 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(255,255,255,0.9);
         font-size: 0.9rem;
     }
 
-    .card-body-custom {
-        padding: 24px;
-    }
+    .card-body-custom { padding: 24px; }
 
     .item-list {
         background: #f8faf9;
@@ -93,50 +89,24 @@
         border-bottom: 1px solid #e9ecef;
     }
 
-    .item-row:last-child {
-        border-bottom: none;
-        padding-bottom: 0;
-    }
-
-    .item-row:first-child {
-        padding-top: 0;
-    }
+    .item-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .item-row:first-child { padding-top: 0; }
 
     .item-icon {
-        width: 40px;
-        height: 40px;
+        width: 40px; height: 40px;
         background: linear-gradient(135deg, var(--forest-medium), var(--forest-light));
         border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: flex; align-items: center; justify-content: center;
         color: white;
         margin-right: 16px;
         flex-shrink: 0;
     }
 
-    .item-details {
-        flex-grow: 1;
-    }
+    .item-details { flex-grow: 1; }
+    .item-name { font-weight: 700; color: #1a202c; margin-bottom: 2px; }
+    .item-meta { font-size: 0.85rem; color: #718096; }
+    .item-price { font-weight: 700; color: var(--forest-medium); font-size: 0.95rem; }
 
-    .item-name {
-        font-weight: 700;
-        color: #1a202c;
-        margin-bottom: 2px;
-    }
-
-    .item-meta {
-        font-size: 0.85rem;
-        color: #718096;
-    }
-
-    .item-price {
-        font-weight: 700;
-        color: var(--forest-medium);
-        font-size: 0.95rem;
-    }
-
-    /* Form Styling */
     .form-custom {
         background: #f8faf9;
         border-radius: 16px;
@@ -152,21 +122,19 @@
         gap: 6px;
     }
 
-    .input-group-custom {
-        position: relative;
-    }
-
     .form-control-custom {
         border: 2px solid #e2e8f0;
         border-radius: 12px;
         padding: 12px 16px;
         font-weight: 500;
         transition: all 0.3s ease;
+        width: 100%;
     }
 
     .form-control-custom:focus {
         border-color: var(--forest-medium);
-        box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+        box-shadow: 0 0 0 3px rgba(45,106,79,0.1);
+        outline: none;
     }
 
     .btn-process {
@@ -179,16 +147,18 @@
         transition: all 0.3s ease;
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 8px;
+        width: 100%;
+        cursor: pointer;
     }
 
     .btn-process:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(45, 106, 79, 0.3);
+        box-shadow: 0 8px 20px rgba(45,106,79,0.3);
         color: white;
     }
 
-    /* Status Alert */
     .status-completed {
         background: linear-gradient(135deg, #d8f3dc, #f0fff4);
         border: 1px solid #9ae6b4;
@@ -204,27 +174,15 @@
     }
 
     .status-icon {
-        width: 48px;
-        height: 48px;
+        width: 48px; height: 48px;
         background: linear-gradient(135deg, #48bb78, #38a169);
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 1.5rem;
+        display: flex; align-items: center; justify-content: center;
+        color: white; font-size: 1.5rem;
     }
 
-    .status-title {
-        font-weight: 800;
-        color: #1b4332;
-        font-size: 1.1rem;
-    }
-
-    .status-subtitle {
-        color: #2d6a4f;
-        font-weight: 600;
-    }
+    .status-title { font-weight: 800; color: #1b4332; font-size: 1.1rem; }
+    .status-subtitle { color: #2d6a4f; font-weight: 600; }
 
     .price-display {
         background: white;
@@ -246,20 +204,9 @@
         border-top: 2px dashed #e2e8f0;
     }
 
-    .price-label {
-        color: #718096;
-        font-size: 0.9rem;
-    }
-
-    .price-value {
-        font-weight: 700;
-        color: #1a202c;
-    }
-
-    .price-value.total {
-        font-size: 1.2rem;
-        color: var(--forest-dark);
-    }
+    .price-label { color: #718096; font-size: 0.9rem; }
+    .price-value { font-weight: 700; color: #1a202c; }
+    .price-value.total { font-size: 1.2rem; color: var(--forest-dark); }
 
     .denda-badge {
         background: #fed7d7;
@@ -273,31 +220,64 @@
         gap: 4px;
     }
 
-    .btn-lunas {
-        background: linear-gradient(135deg, #48bb78, #38a169);
-        border: none;
-        border-radius: 10px;
-        color: white;
+    /* Konfirmasi Pembayaran Section */
+    .payment-confirm-section {
+        margin-top: 16px;
+        border-top: 2px dashed #9ae6b4;
+        padding-top: 16px;
+    }
+
+    .payment-confirm-label {
+        font-size: 0.85rem;
+        color: #2d6a4f;
         font-weight: 600;
-        padding: 10px 20px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .btn-lunas {
+        background: linear-gradient(135deg, #1b4332, #2d6a4f);
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 14px 20px;
         transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(27,67,50,0.3);
     }
 
     .btn-lunas:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(72, 187, 120, 0.3);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(27,67,50,0.4);
         color: white;
+        background: linear-gradient(135deg, #2d6a4f, #40916c);
+    }
+
+    .btn-lunas:active {
+        transform: translateY(0);
     }
 
     .badge-lunas {
         background: linear-gradient(135deg, #48bb78, #38a169);
         color: white;
-        padding: 8px 16px;
-        border-radius: 20px;
+        padding: 12px 20px;
+        border-radius: 12px;
         font-weight: 700;
+        font-size: 1rem;
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
     }
 
     .empty-state {
@@ -305,17 +285,14 @@
         padding: 60px 20px;
         background: white;
         border-radius: 24px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
     }
 
     .empty-icon {
-        width: 120px;
-        height: 120px;
+        width: 120px; height: 120px;
         background: linear-gradient(135deg, #f7fafc, #edf2f7);
         border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        display: inline-flex; align-items: center; justify-content: center;
         margin-bottom: 24px;
         color: var(--forest-medium);
         font-size: 3rem;
@@ -343,7 +320,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="card-body-custom">
             <div class="row g-4">
                 <!-- Daftar Item -->
@@ -370,12 +347,13 @@
                     </div>
                 </div>
 
-                <!-- Form/Status Pengembalian -->
+                <!-- Form / Status Pengembalian -->
                 <div class="col-md-6">
                     @if(!$r->pengembalian)
+                    {{-- Belum diproses --}}
                     <div class="form-custom">
                         <h6 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
-                            <i class="bi bi-arrow-counterclockise text-primary"></i>
+                            <i class="bi bi-arrow-counterclockwise text-primary"></i>
                             Proses Pengembalian
                         </h6>
                         <form action="{{ route('admin.pengembalian.proses', $r) }}" method="POST">
@@ -385,21 +363,22 @@
                                     <i class="bi bi-calendar-check"></i>
                                     Tanggal Kembali Real
                                 </label>
-                                <div class="input-group-custom">
-                                    <input type="date" name="tanggal_kembali_real" 
-                                        class="form-control form-control-custom" 
-                                        max="{{ date('Y-m-d') }}" 
-                                        value="{{ date('Y-m-d') }}" 
-                                        required>
-                                </div>
+                                <input type="date"
+                                       name="tanggal_kembali_real"
+                                       class="form-control-custom"
+                                       max="{{ date('Y-m-d') }}"
+                                       value="{{ date('Y-m-d') }}"
+                                       required>
                             </div>
-                            <button type="submit" class="btn-process w-100">
+                            <button type="submit" class="btn-process">
                                 <i class="bi bi-check-circle-fill"></i>
                                 Proses Pengembalian
                             </button>
                         </form>
                     </div>
+
                     @else
+                    {{-- Sudah diproses --}}
                     <div class="status-completed">
                         <div class="status-header">
                             <div class="status-icon">
@@ -407,16 +386,18 @@
                             </div>
                             <div>
                                 <div class="status-title">Sudah Diproses</div>
-                                <div class="status-subtitle">Pengembalian berhasil dicatat</div>
+                                <div class="status-subtitle">
+                                    Kembali: {{ \Carbon\Carbon::parse($r->pengembalian->tanggal_kembali_real)->format('d M Y') }}
+                                </div>
                             </div>
                         </div>
-                        
+
                         <div class="price-display">
                             <div class="price-row">
-                                <span class="price-label">Total Sewa</span>
+                                <span class="price-label">Total Sewa ({{ $r->pengembalian->total_hari }} hari)</span>
                                 <span class="price-value">Rp {{ number_format($r->pengembalian->total_bayar - $r->pengembalian->denda, 0, ',', '.') }}</span>
                             </div>
-                            
+
                             @if($r->pengembalian->denda > 0)
                             <div class="price-row">
                                 <span class="price-label">
@@ -425,32 +406,48 @@
                                         Denda Keterlambatan
                                     </span>
                                 </span>
-                                <span class="price-value text-danger">+ Rp {{ number_format($r->pengembalian->denda, 0, ',', '.') }}</span>
+                                <span class="price-value text-danger">
+                                    + Rp {{ number_format($r->pengembalian->denda, 0, ',', '.') }}
+                                </span>
                             </div>
                             @endif
-                            
+
                             <div class="price-row">
-                                <span class="price-label">Total Pembayaran</span>
-                                <span class="price-value total">Rp {{ number_format($r->pengembalian->total_bayar, 0, ',', '.') }}</span>
+                                <span class="price-label fw-bold">Total Pembayaran</span>
+                                <span class="price-value total">
+                                    Rp {{ number_format($r->pengembalian->total_bayar, 0, ',', '.') }}
+                                </span>
                             </div>
                         </div>
 
-                        <div class="mt-3">
+                        {{-- Tombol Konfirmasi Pembayaran --}}
+                        <div class="payment-confirm-section">
                             @if($r->pengembalian->status_pembayaran == 'belum_lunas')
-                                <form action="{{ route('admin.pengembalian.lunas', $r->pengembalian) }}" method="POST">
+                                <div class="payment-confirm-label">
+                                    <i class="bi bi-cash-coin"></i>
+                                    Status: <span class="badge bg-warning text-dark ms-1">⏳ Belum Lunas</span>
+                                </div>
+                                <form action="{{ route('admin.pengembalian.lunas', $r->pengembalian) }}"
+                                      method="POST"
+                                      onsubmit="return confirm('Konfirmasi pembayaran sudah lunas?')">
                                     @csrf
-                                    <button type="submit" class="btn-lunas w-100">
-                                        <i class="bi bi-check2-all"></i>
-                                        Konfirmasi Lunas
+                                    <button type="submit" class="btn-lunas">
+                                        <i class="bi bi-cash-stack fs-5"></i>
+                                        Konfirmasi Pembayaran Lunas
                                     </button>
                                 </form>
                             @else
+                                <div class="payment-confirm-label">
+                                    <i class="bi bi-check-circle-fill text-success"></i>
+                                    Status Pembayaran
+                                </div>
                                 <div class="badge-lunas">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                    Pembayaran Lunas
+                                    <i class="bi bi-check-circle-fill fs-5"></i>
+                                    Pembayaran Lunas ✓
                                 </div>
                             @endif
                         </div>
+
                     </div>
                     @endif
                 </div>
@@ -458,6 +455,7 @@
         </div>
     </div>
     @endforeach
+
 @else
     <div class="empty-state">
         <div class="empty-icon">

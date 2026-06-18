@@ -121,6 +121,90 @@
             box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
         }
 
+        /* ========== TOMBOL KERANJANG - BARU ========== */
+        .nav-btn-keranjang {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .nav-btn-keranjang::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn-keranjang:hover {
+            background: rgba(255, 193, 7, 0.9);
+            border-color: #ffc107;
+            color: #1b4332;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.3);
+        }
+
+        .nav-btn-keranjang:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn-keranjang i {
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-btn-keranjang:hover i {
+            transform: rotate(-10deg) scale(1.1);
+        }
+
+        .nav-btn-keranjang.active {
+            background: #ffc107;
+            border-color: #ffc107;
+            color: #1b4332;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+        }
+
+        /* Badge jumlah item keranjang */
+        .cart-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: linear-gradient(135deg, #e76f51, #e63946);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5px;
+            border: 2px solid var(--forest-dark);
+            box-shadow: 0 2px 8px rgba(231, 111, 81, 0.4);
+            animation: bounceIn 0.5s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
         /* Tombol Profile / User Dropdown */
         .nav-btn-profile {
             position: relative;
@@ -751,13 +835,13 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-    <!-- NAVBAR - DENGAN TOMBOL BARU YANG MENARIK -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top py-3">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-2 fs-4" href="{{ route('home') }}">
-                <i class="bi bi-tent-fill text-warning"></i>
-                <span>Campify</span>
-            </a>
+    <!-- NAVBAR - DENGAN TOMBOL KERANJANG BARU -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top py-3">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2 fs-4" href="{{ route('home') }}">
+            <img src="{{ asset('/storage/barang/log.png') }}" height="36" class="d-inline-block">
+            <span>Campify</span>
+        </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav">
@@ -767,7 +851,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center gap-3">
                     
-                    <!-- Tombol Katalog - BARU & MENARIK -->
+                    <!-- Tombol Katalog -->
                     <li class="nav-item">
                         <a class="nav-btn-katalog {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">
                             <i class="bi bi-grid-fill"></i>
@@ -775,30 +859,43 @@
                         </a>
                     </li>
 
+                    <!-- Tombol Keranjang - BARU -->
+                    <li class="nav-item">
+                        <a class="nav-btn-keranjang" href="/keranjang">
+                            <i class="bi bi-cart-fill"></i>
+                            <span>Keranjang</span>
+                            @if(isset($cartCount) && $cartCount > 0)
+                                <span class="cart-badge">{{ $cartCount }}</span>
+                            @endif
+                        </a>
+                    </li>
+
                     @auth
-                        <!-- Tombol Profile - BARU & MENARIK -->
+                        <!-- Tombol Profile Dropdown -->
                         <li class="nav-item dropdown">
                             <a class="nav-btn-profile dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="avatar-circle">
-                                    {{ substr(Auth::user()->nama, 0, 1) }}
+                                    {{ substr(auth()->user()->name, 0, 1) }}
                                 </div>
-                                <span>{{ Auth::user()->nama }}</span>
+                                <span>{{ auth()->user()->name }}</span>
                                 <i class="bi bi-chevron-down dropdown-arrow"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom shadow-lg">
                                 <li>
-                                    <a class="dropdown-item dropdown-item-custom" href="{{ route('riwayat') }}">
+                                    <a class="dropdown-item-custom" href="{{ route('riwayat') }}">
                                         <i class="bi bi-clock-history"></i>
                                         Riwayat Sewa
                                     </a>
                                 </li>
                                 <li><hr class="dropdown-divider dropdown-divider-custom"></li>
                                 <li>
-                                    <a class="dropdown-item dropdown-item-custom text-danger" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i class="bi bi-box-arrow-right"></i>
-                                        Logout
-                                    </a>
+                                    <form action="{{ route('logout') }}" method="POST" class="d-inline w-100">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item-custom text-danger">
+                                            <i class="bi bi-box-arrow-right"></i>
+                                            Logout
+                                        </button>
+                                    </form>
                                 </li>
                             </ul>
                         </li>
@@ -827,15 +924,14 @@
                 <div class="col-lg-7">
                     <span class="hero-badge badge rounded-pill px-4 py-2 mb-4 d-inline-flex align-items-center gap-2">
                         <i class="bi bi-stars"></i>
-                        <span>Koleksi Gear Premium 2024</span>
+                        <span>Perlengkapan Outdoor Berkualitas Terpercaya 2026</span>
                     </span>
                     <h1 class="display-4 fw-bold mb-4" style="line-height: 1.2;">
-                        Siapkan Petualangan<br>
-                        <span class="text-warning">Alam Bebas</span> Anda 🏔️
+                        Ciptakan Jejak Baru Dengan, 
+                        Perlengkapan<span class="text-success"> Terbaik.</span><br>
                     </h1>
                     <p class="lead mb-4 opacity-90" style="max-width: 500px;">
-                        Temukan perlengkapan camping berkualitas tinggi dengan harga terjangkau. Dari tenda gunung
-                        hingga peralatan BBQ lengkap.
+                        "Perlengkapan yang berkualitas, membuat peetualangan anda lebih lebih ringan, melangkah lebih jauh,ciptakan momen indah di setiap Perjalanan."
                     </p>
                     <div class="d-flex gap-3 flex-wrap">
                         <a href="#katalog" class="btn btn-warning btn-lg rounded-pill px-5 fw-bold text-dark shadow-lg">

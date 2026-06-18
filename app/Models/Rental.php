@@ -10,7 +10,9 @@ class Rental extends Model
         'user_id',
         'tanggal_mulai',
         'tanggal_selesai',
-        'status'
+        'status',
+        'alasan_ditolak',
+        'foto_ident'
     ];
 
     public function user()

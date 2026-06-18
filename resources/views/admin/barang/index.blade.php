@@ -595,10 +595,123 @@
 </div>
 
 <!-- Pagination -->
+<!-- Pagination -->
 @if($barang->hasPages())
 <div class="pagination-container">
-    {{ $barang->links() }}
+    {{ $barang->links('pagination::bootstrap-5') }}
 </div>
 @endif
+
+<!-- Tambahkan style ini di bagian <style> yang sudah ada, ganti yang lama -->
+
+<style>
+    /* Pagination - FIXED */
+    .pagination-container {
+        margin-top: 32px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .pagination {
+        display: flex;
+        gap: 6px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .page-item .page-link {
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 10px 16px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #4a5568;
+        background: white;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        min-width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+    }
+
+    .page-item.active .page-link {
+        background: linear-gradient(135deg, var(--forest-medium), var(--forest-light));
+        border-color: transparent;
+        color: white;
+        box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3);
+    }
+
+    .page-item .page-link:hover:not(.disabled) {
+        background: var(--nature-accent);
+        border-color: var(--forest-medium);
+        color: var(--forest-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-item.disabled .page-link {
+        background: #f7fafc;
+        border-color: #e2e8f0;
+        color: #a0aec0;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* Prev/Next buttons styling */
+    .page-item:first-child .page-link,
+    .page-item:last-child .page-link {
+        padding: 10px 20px;
+        gap: 6px;
+    }
+
+    .page-item:first-child .page-link::before {
+        content: '←';
+        font-size: 1rem;
+    }
+
+    .page-item:last-child .page-link::after {
+        content: '→';
+        font-size: 1rem;
+    }
+
+    /* Responsive Pagination */
+    @media (max-width: 576px) {
+        .pagination-container {
+            margin-top: 24px;
+        }
+
+        .pagination {
+            gap: 4px;
+        }
+
+        .page-item .page-link {
+            padding: 8px 12px;
+            min-width: 36px;
+            height: 36px;
+            font-size: 0.85rem;
+            border-radius: 8px;
+        }
+
+        /* Hide text on mobile for prev/next, show only arrows */
+        .page-item:first-child .page-link span,
+        .page-item:last-child .page-link span {
+            display: none;
+        }
+
+        .page-item:first-child .page-link::before {
+            content: '←';
+            margin: 0;
+        }
+
+        .page-item:last-child .page-link::after {
+            content: '→';
+            margin: 0;
+        }
+    }
+</style>
 
 @endsection

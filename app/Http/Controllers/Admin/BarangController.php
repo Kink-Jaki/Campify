@@ -21,24 +21,31 @@ class BarangController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $data = $request->validate([
-            'nama_barang'        => 'required|string|max:255',
-            'kategori_id'        => 'required|exists:kategori,id',
-            'stok'               => 'required|integer|min:0',
-            'harga_sewa_per_hari'=> 'required|numeric|min:0',
-            'kondisi'            => 'required|in:baik,rusak',
-            'deskripsi'          => 'nullable|string',
-            'foto'               => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
+{
+    $data = $request->validate([
+        'nama_barang'         => 'required|string|max:255',
+        'kategori_id'         => 'required|exists:kategori,id',
+        'stok'                => 'required|integer|min:0',
+        'harga_sewa_per_hari' => 'required|numeric|min:0',
+        'kondisi'            => 'required|in:baik,rusak',
+        'deskripsi'          => 'nullable|string',
+        'foto'               => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
 
-        if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('barang', 'public');
-        }
+    if ($request->hasFile('foto')) {
+        $file = $request->file('foto');
 
-        Barang::create($data);
-        return redirect()->route('admin.barang.index')->with('success', 'Barang berhasil ditambahkan.');
+        $filename = time() . '_' . $file->getClientOriginalName();
+
+        $data['foto'] = $file->storeAs('barang', $filename, 'public');
     }
+
+    Barang::create($data);
+
+    return redirect()
+        ->route('admin.barang.index')
+        ->with('success', 'Barang berhasil ditambahkan.');
+}
 
     public function edit(Barang $barang)
     {
@@ -59,7 +66,7 @@ class BarangController extends Controller
         ]);
 
         if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('barang', 'public');
+            $data['foto'] = $request->file('foto')->store('barang', 'public.storage');
         }
 
         $barang->update($data);

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -12,9 +13,20 @@ class PengembalianController extends Controller
 {
     public function index()
     {
+        // Tampilkan rental yang DISEWA atau SELESAI tapi belum lunas
         $rentals = Rental::with(['user', 'details.barang', 'pengembalian'])
-                         ->where('status', 'disewa')
-                         ->latest()->get();
+            ->where(function ($query) {
+                $query->where('status', 'disewa')
+                    ->orWhere(function ($q) {
+                        $q->where('status', 'selesai')
+                            ->whereHas('pengembalian', function ($p) {
+                                $p->where('status_pembayaran', 'belum_lunas');
+                            });
+                    });
+            })
+            ->latest()
+            ->get();
+
         return view('admin.pengembalian.index', compact('rentals'));
     }
 
